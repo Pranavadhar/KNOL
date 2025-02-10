@@ -22,7 +22,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         const requestBody = new URLSearchParams({ name, email, message });
 
         // Correct Render app URL
-        const response = await fetch('https://konl.onrender.com/api/submit-form', {
+        const response = await fetch('https://knol.onrender.com/api/submit-form', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
