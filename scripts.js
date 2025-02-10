@@ -12,7 +12,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         const formData = new FormData(this);
 
         // Corrected to the local host API
-        const response = await fetch('http://localhost:5500/api/submit-form', {
+        const response = await fetch('https://lonk.onrender.com/api/submit-form', {
             method: 'POST',
             body: formData
         });
