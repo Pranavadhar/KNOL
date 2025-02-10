@@ -42,7 +42,6 @@ Message: ${message}
             `
         };
 
-        // Sending the email with Nodemailer
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.error('Error sending email:', error);
