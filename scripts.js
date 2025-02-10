@@ -9,12 +9,25 @@ document.getElementById('contactForm').addEventListener('submit', async function
         submitButton.textContent = 'Sending...';
         formMessage.textContent = '';
 
+        // Collect form data
         const formData = new FormData(this);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+
+        // Log the data being sent (for debugging)
+        console.log('Form data being sent:', { name, email, message });
+
+        // Construct the request body
+        const requestBody = new URLSearchParams({ name, email, message });
 
         // Correct Render app URL
-        const response = await fetch('https://knol.onrender.com/api/submit-form', {
+        const response = await fetch('https://konl.onrender.com/api/submit-form', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: requestBody.toString()
         });
 
         if (response.ok) {

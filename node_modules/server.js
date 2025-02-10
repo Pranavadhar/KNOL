@@ -7,6 +7,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors());
+app.use(express.urlencoded({ extended: true })); //  Parse URL-encoded bodies
 app.use(express.json());
 
 // Configure email transporter
@@ -31,15 +32,14 @@ app.post('/api/submit-form', async (req, res) => {
     try {
         const { name, email, message } = req.body;
 
+        // Debugging: Log the received data
+        console.log('Received form data:', { name, email, message });
+
         const mailOptions = {
             from: process.env.EMAIL,
             to: process.env.EMAIL,
             subject: 'New Contact Form Submission - LONK',
-            text: `
-Name: ${name}
-Email: ${email}
-Message: ${message}
-            `
+            text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
