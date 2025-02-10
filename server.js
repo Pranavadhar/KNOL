@@ -41,14 +41,16 @@ Email: ${email}
 Message: ${message}
             `
         };
-
+        
+        // Sending the email with Nodemailer
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.error('Error sending email:', error);
                 return res.status(500).json({ message: 'Error submitting form: ' + error.message });
+            } else {
+                console.log('Email sent:', info.response);
+                res.status(200).json({ message: 'Form submitted successfully' });
             }
-            console.log('Email sent:', info.response);
-            res.status(200).json({ message: 'Form submitted successfully' });
         });
 
     } catch (error) {
